@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33502.453
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WarThreads", "WarThreads\WarThreads.csproj", "{7F153B46-6957-4CD0-B8FF-F1A4ECD2DD65}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WarThreadsGUI", "WarThreadsGUI\WarThreadsGUI.csproj", "{1CBF41AB-198B-45CF-BAB6-BB22CDDF9AD1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7F153B46-6957-4CD0-B8FF-F1A4ECD2DD65}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F153B46-6957-4CD0-B8FF-F1A4ECD2DD65}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F153B46-6957-4CD0-B8FF-F1A4ECD2DD65}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F153B46-6957-4CD0-B8FF-F1A4ECD2DD65}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1CBF41AB-198B-45CF-BAB6-BB22CDDF9AD1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1CBF41AB-198B-45CF-BAB6-BB22CDDF9AD1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1CBF41AB-198B-45CF-BAB6-BB22CDDF9AD1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1CBF41AB-198B-45CF-BAB6-BB22CDDF9AD1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {38032CA8-4733-4B6A-933E-2ADE0DF1E755}
+	EndGlobalSection
+EndGlobal
