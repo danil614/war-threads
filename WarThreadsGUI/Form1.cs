@@ -1,4 +1,3 @@
-using System.Resources;
 using Timer = System.Threading.Timer;
 
 namespace WarThreadsGUI
@@ -19,6 +18,7 @@ namespace WarThreadsGUI
         private Thread enemyThread;
         private Timer enemyTimer;
         private Timer gameTimer;
+        private PictureBox cannonPictureBox;
 
         public Form1()
         {
@@ -31,11 +31,24 @@ namespace WarThreadsGUI
 
         private void InitializeGame()
         {
+            panelGame.Controls.Clear();
+
             enemyThread = new Thread(GenerateEnemies);
             enemyThread.IsBackground = true;
 
             enemyTimer = new Timer(UpdateEnemies, null, Timeout.Infinite, 1000);
             gameTimer = new Timer(IncreaseEnemySpeed, null, Timeout.Infinite, 5000);
+
+            cannonPictureBox = new PictureBox
+            {
+                Image = Properties.Resources.cannon,
+                SizeMode = PictureBoxSizeMode.Zoom,
+                Size = new Size(40, 40),
+                Location = new Point(panelGame.Width / 2, panelGame.Height - 40),
+                Tag = "cannon"
+            };
+
+            panelGame.Controls.Add(cannonPictureBox);
         }
 
         private void GenerateEnemies()
@@ -46,10 +59,10 @@ namespace WarThreadsGUI
                 {
                     PictureBox enemy = new PictureBox
                     {
-                        Image = Properties.Resources.enemy,
-                        SizeMode = PictureBoxSizeMode.StretchImage,
-                        Size = new Size(40, 40),
-                        Location = new Point(new Random().Next(panelGame.Width - 40), 0),
+                        Image = Properties.Resources.enemy_1,
+                        SizeMode = PictureBoxSizeMode.Zoom,
+                        Size = new Size(20, 20),
+                        Location = new Point(new Random().Next(panelGame.Width - 30), 0),
                         Tag = "enemy"
                     };
 
@@ -133,8 +146,9 @@ namespace WarThreadsGUI
             PictureBox bullet = new PictureBox
             {
                 Image = Properties.Resources.bullet,
-                Size = new Size(5, 10),
-                Location = new Point(pbCannon.Location.X + pbCannon.Width / 2, pbCannon.Location.Y - 10),
+                Size = new Size(15, 15),
+                SizeMode = PictureBoxSizeMode.Zoom,
+                Location = new Point(cannonPictureBox.Location.X + cannonPictureBox.Width / 2, cannonPictureBox.Location.Y - 10),
                 Tag = "bullet"
             };
 
@@ -151,17 +165,17 @@ namespace WarThreadsGUI
             if (e.KeyCode == Keys.Left)
             {
                 // Проверяем, чтобы пушка не вышла за пределы левой границы панели
-                if (pbCannon.Left - step >= 0)
+                if (cannonPictureBox.Left - step >= 0)
                 {
-                    pbCannon.Left -= step;
+                    cannonPictureBox.Left -= step;
                 }
             }
             else if (e.KeyCode == Keys.Right)
             {
                 // Проверяем, чтобы пушка не вышла за пределы правой границы панели
-                if (pbCannon.Right + step <= panelGame.Width)
+                if (cannonPictureBox.Right + step <= panelGame.Width)
                 {
-                    pbCannon.Left += step;
+                    cannonPictureBox.Left += step;
                 }
             }
             else if (e.KeyCode == Keys.Space)
@@ -236,8 +250,6 @@ namespace WarThreadsGUI
             hitCount = 0;
             missCount = 0;
             enemySpeed = InitialEnemySpeed;
-
-            panelGame.Controls.Clear();
 
             enemyTimer.Change(0, 1000);
             gameTimer.Change(0, 5000);

@@ -29,47 +29,29 @@
         private void InitializeComponent()
         {
             panelGame = new Panel();
-            pbCannon = new PictureBox();
-            panelGame.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pbCannon).BeginInit();
             SuspendLayout();
             // 
             // panelGame
             // 
-            panelGame.Controls.Add(pbCannon);
             panelGame.Dock = DockStyle.Fill;
             panelGame.Location = new Point(0, 0);
             panelGame.Name = "panelGame";
-            panelGame.Size = new Size(804, 466);
-            panelGame.TabIndex = 0;
-            // 
-            // pbCannon
-            // 
-            pbCannon.Image = Properties.Resources.cannon;
-            pbCannon.InitialImage = Properties.Resources.cannon;
-            pbCannon.Location = new Point(385, 426);
-            pbCannon.Name = "pbCannon";
-            pbCannon.Size = new Size(31, 37);
-            pbCannon.SizeMode = PictureBoxSizeMode.Zoom;
-            pbCannon.TabIndex = 0;
-            pbCannon.TabStop = false;
+            panelGame.Size = new Size(841, 513);
+            panelGame.TabIndex = 2;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(804, 466);
+            ClientSize = new Size(841, 513);
             Controls.Add(panelGame);
             Name = "Form1";
-            Text = "Form1";
-            panelGame.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)pbCannon).EndInit();
+            Text = "War Threads";
             ResumeLayout(false);
         }
 
         #endregion
 
         private Panel panelGame;
-        private PictureBox pbCannon;
     }
 }

@@ -83,9 +83,29 @@ namespace WarThreadsGUI.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap enemy {
+        internal static System.Drawing.Bitmap enemy_1 {
             get {
-                object obj = ResourceManager.GetObject("enemy", resourceCulture);
+                object obj = ResourceManager.GetObject("enemy-1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap enemy_2 {
+            get {
+                object obj = ResourceManager.GetObject("enemy-2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap enemy_3 {
+            get {
+                object obj = ResourceManager.GetObject("enemy-3", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
