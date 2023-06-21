@@ -36,14 +36,14 @@
             panelGame.Dock = DockStyle.Fill;
             panelGame.Location = new Point(0, 0);
             panelGame.Name = "panelGame";
-            panelGame.Size = new Size(841, 513);
+            panelGame.Size = new Size(939, 583);
             panelGame.TabIndex = 2;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(841, 513);
+            ClientSize = new Size(939, 583);
             Controls.Add(panelGame);
             Name = "Form1";
             Text = "War Threads";
