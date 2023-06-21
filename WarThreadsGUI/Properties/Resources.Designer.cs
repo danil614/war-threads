@@ -83,9 +83,9 @@ namespace WarThreadsGUI.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap enemy_1 {
+        internal static System.Drawing.Bitmap enemy1 {
             get {
-                object obj = ResourceManager.GetObject("enemy-1", resourceCulture);
+                object obj = ResourceManager.GetObject("enemy1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -93,9 +93,9 @@ namespace WarThreadsGUI.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap enemy_2 {
+        internal static System.Drawing.Bitmap enemy2 {
             get {
-                object obj = ResourceManager.GetObject("enemy-2", resourceCulture);
+                object obj = ResourceManager.GetObject("enemy2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -103,9 +103,9 @@ namespace WarThreadsGUI.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap enemy_3 {
+        internal static System.Drawing.Bitmap enemy3 {
             get {
-                object obj = ResourceManager.GetObject("enemy-3", resourceCulture);
+                object obj = ResourceManager.GetObject("enemy3", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
