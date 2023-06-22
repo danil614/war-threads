@@ -46,6 +46,7 @@
             ClientSize = new Size(939, 583);
             Controls.Add(panelGame);
             Name = "Form1";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "War Threads";
             ResumeLayout(false);
         }

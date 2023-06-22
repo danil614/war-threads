@@ -1,5 +1,3 @@
-using System.Drawing;
-
 namespace WarThreadsGUI
 {
     public partial class Form1 : Form
@@ -23,6 +21,7 @@ namespace WarThreadsGUI
         {
             InitializeComponent();
 
+            // Создаем объект пушки
             cannonPictureBox = new PictureBox
             {
                 Image = Properties.Resources.cannon,
@@ -45,9 +44,11 @@ namespace WarThreadsGUI
 
             StartEvent.Reset();
 
+            // Поток создания врагов
             var generateEnemiesThread = new Thread(GenerateEnemies);
             generateEnemiesThread.Start();
 
+            // Поток увеличения скорости врагов
             var speedThread = new Thread(IncreaseSpeed);
             speedThread.Start();
 
@@ -177,6 +178,7 @@ namespace WarThreadsGUI
 
                     foreach (Control control in panelGame.Controls)
                     {
+                        // Проверяем столкновение врага с пулей
                         if (control is PictureBox bullet && bullet.Tag.ToString() == "bullet")
                         {
                             if (bullet.Bounds.IntersectsWith(enemy.Bounds))
@@ -219,6 +221,7 @@ namespace WarThreadsGUI
         {
             Interlocked.Increment(ref missCount);
 
+            // Удаляем врага с панели
             panelGame.Invoke(new Action(() =>
             {
                 panelGame.Controls.Remove(enemy);
@@ -268,6 +271,7 @@ namespace WarThreadsGUI
                 Tag = "bullet"
             };
 
+            // Добавляем пулю на панель
             panelGame.Invoke(new Action(() =>
             {
                 panelGame.Controls.Add(bullet);
@@ -294,6 +298,7 @@ namespace WarThreadsGUI
                 return;
             }
 
+            // Удаляем пулю с панели
             panelGame.Invoke(new Action(() =>
             {
                 panelGame.Controls.Remove(bullet);
