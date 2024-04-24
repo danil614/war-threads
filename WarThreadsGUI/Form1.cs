@@ -5,10 +5,10 @@ namespace WarThreadsGUI
         private const int MaxBullets = 3;
         private readonly string[] EnemyImages = { "enemy1", "enemy2", "enemy3" };
         private readonly Random Random = new Random();
-        private Mutex screenlock = new(); // объект блокировки экрана
+        private Mutex screenlock = new(); // РѕР±СЉРµРєС‚ Р±Р»РѕРєРёСЂРѕРІРєРё СЌРєСЂР°РЅР°
 
-        private readonly Semaphore BulletSemaphore = new Semaphore(MaxBullets, MaxBullets); // семафор для ограничения количества пуль
-        private readonly AutoResetEvent StartEvent = new AutoResetEvent(false); // событие для начала игры
+        private readonly Semaphore BulletSemaphore = new Semaphore(MaxBullets, MaxBullets); // СЃРµРјР°С„РѕСЂ РґР»СЏ РѕРіСЂР°РЅРёС‡РµРЅРёСЏ РєРѕР»РёС‡РµСЃС‚РІР° РїСѓР»СЊ
+        private readonly AutoResetEvent StartEvent = new AutoResetEvent(false); // СЃРѕР±С‹С‚РёРµ РґР»СЏ РЅР°С‡Р°Р»Р° РёРіСЂС‹
 
         private int hitCount = 0;
         private int missCount = 0;
@@ -21,7 +21,7 @@ namespace WarThreadsGUI
         {
             InitializeComponent();
 
-            // Создаем объект пушки
+            // РЎРѕР·РґР°РµРј РѕР±СЉРµРєС‚ РїСѓС€РєРё
             cannonPictureBox = new PictureBox
             {
                 Image = Properties.Resources.cannon,
@@ -44,11 +44,11 @@ namespace WarThreadsGUI
 
             StartEvent.Reset();
 
-            // Поток создания врагов
+            // РџРѕС‚РѕРє СЃРѕР·РґР°РЅРёСЏ РІСЂР°РіРѕРІ
             var generateEnemiesThread = new Thread(GenerateEnemies);
             generateEnemiesThread.Start();
 
-            // Поток увеличения скорости врагов
+            // РџРѕС‚РѕРє СѓРІРµР»РёС‡РµРЅРёСЏ СЃРєРѕСЂРѕСЃС‚Рё РІСЂР°РіРѕРІ
             var speedThread = new Thread(IncreaseSpeed);
             speedThread.Start();
 
@@ -60,14 +60,14 @@ namespace WarThreadsGUI
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
-            int step = 20; // Шаг перемещения пушки
+            int step = 20; // РЁР°Рі РїРµСЂРµРјРµС‰РµРЅРёСЏ РїСѓС€РєРё
 
-            // Проверяем нажатую клавишу и перемещаем пушку соответственно
+            // РџСЂРѕРІРµСЂСЏРµРј РЅР°Р¶Р°С‚СѓСЋ РєР»Р°РІРёС€Сѓ Рё РїРµСЂРµРјРµС‰Р°РµРј РїСѓС€РєСѓ СЃРѕРѕС‚РІРµС‚СЃС‚РІРµРЅРЅРѕ
             if (e.KeyCode == Keys.Left)
             {
                 StartEvent.Set();
 
-                // Проверяем, чтобы пушка не вышла за пределы левой границы панели
+                // РџСЂРѕРІРµСЂСЏРµРј, С‡С‚РѕР±С‹ РїСѓС€РєР° РЅРµ РІС‹С€Р»Р° Р·Р° РїСЂРµРґРµР»С‹ Р»РµРІРѕР№ РіСЂР°РЅРёС†С‹ РїР°РЅРµР»Рё
                 if (cannonPictureBox.Left - step >= 0)
                 {
                     cannonPictureBox.Left -= step;
@@ -77,7 +77,7 @@ namespace WarThreadsGUI
             {
                 StartEvent.Set();
 
-                // Проверяем, чтобы пушка не вышла за пределы правой границы панели
+                // РџСЂРѕРІРµСЂСЏРµРј, С‡С‚РѕР±С‹ РїСѓС€РєР° РЅРµ РІС‹С€Р»Р° Р·Р° РїСЂРµРґРµР»С‹ РїСЂР°РІРѕР№ РіСЂР°РЅРёС†С‹ РїР°РЅРµР»Рё
                 if (cannonPictureBox.Right + step <= panelGame.Width)
                 {
                     cannonPictureBox.Left += step;
@@ -103,7 +103,7 @@ namespace WarThreadsGUI
         {
             if (screenlock.WaitOne(0))
             {
-                MessageBox.Show($"Вы проиграли! Попаданий: {hitCount}, Промахов: {missCount}", "Война потоков",
+                MessageBox.Show($"Р’С‹ РїСЂРѕРёРіСЂР°Р»Рё! РџРѕРїР°РґР°РЅРёР№: {hitCount}, РџСЂРѕРјР°С…РѕРІ: {missCount}", "Р’РѕР№РЅР° РїРѕС‚РѕРєРѕРІ",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 Close();
@@ -117,7 +117,7 @@ namespace WarThreadsGUI
                 gameStarted = true;
             }
 
-            // Создаем случайного врага
+            // РЎРѕР·РґР°РµРј СЃР»СѓС‡Р°Р№РЅРѕРіРѕ РІСЂР°РіР°
             while (gameStarted)
             {
                 if (Random.Next(50) < (hitCount + missCount) / 25 + 20)
@@ -132,16 +132,16 @@ namespace WarThreadsGUI
 
         private void CreateEnemy()
         {
-            // Выбор случайного изображения врага
+            // Р’С‹Р±РѕСЂ СЃР»СѓС‡Р°Р№РЅРѕРіРѕ РёР·РѕР±СЂР°Р¶РµРЅРёСЏ РІСЂР°РіР°
             string randomImage = EnemyImages[Random.Next(EnemyImages.Length)];
 
             var size = new Size(20, 20);
             var numberLives = 1;
 
-            // Случайная координата y
+            // РЎР»СѓС‡Р°Р№РЅР°СЏ РєРѕРѕСЂРґРёРЅР°С‚Р° y
             int y = Random.Next(panelGame.Height - 50);
 
-            // Большой корабль
+            // Р‘РѕР»СЊС€РѕР№ РєРѕСЂР°Р±Р»СЊ
             if (Random.Next(100) < 5)
             {
                 size = new Size(panelGame.Width / 2, panelGame.Height / 2);
@@ -149,10 +149,10 @@ namespace WarThreadsGUI
                 numberLives = 1000;
             }
 
-            // Нечетные y появляются слева, четные y появляются справа
+            // РќРµС‡РµС‚РЅС‹Рµ y РїРѕСЏРІР»СЏСЋС‚СЃСЏ СЃР»РµРІР°, С‡РµС‚РЅС‹Рµ y РїРѕСЏРІР»СЏСЋС‚СЃСЏ СЃРїСЂР°РІР°
             int x = y % 2 != 0 ? 0 : panelGame.Width;
 
-            // Установить направление в зависимости от начальной позиции
+            // РЈСЃС‚Р°РЅРѕРІРёС‚СЊ РЅР°РїСЂР°РІР»РµРЅРёРµ РІ Р·Р°РІРёСЃРёРјРѕСЃС‚Рё РѕС‚ РЅР°С‡Р°Р»СЊРЅРѕР№ РїРѕР·РёС†РёРё
             int direction = x == 0 ? 1 : -1;
 
             PictureBox enemy = new PictureBox
@@ -169,7 +169,7 @@ namespace WarThreadsGUI
                 panelGame.Controls.Add(enemy);
             }));
 
-            // Пока противник находится в пределах экрана
+            // РџРѕРєР° РїСЂРѕС‚РёРІРЅРёРє РЅР°С…РѕРґРёС‚СЃСЏ РІ РїСЂРµРґРµР»Р°С… СЌРєСЂР°РЅР°
             while ((direction == 1 && x <= panelGame.Width) || (direction == -1 && x >= 0))
             {
                 for (int i = 0; i < 10; i++)
@@ -178,7 +178,7 @@ namespace WarThreadsGUI
 
                     foreach (Control control in panelGame.Controls)
                     {
-                        // Проверяем столкновение врага с пулей
+                        // РџСЂРѕРІРµСЂСЏРµРј СЃС‚РѕР»РєРЅРѕРІРµРЅРёРµ РІСЂР°РіР° СЃ РїСѓР»РµР№
                         if (control is PictureBox bullet && bullet.Tag.ToString() == "bullet")
                         {
                             if (bullet.Bounds.IntersectsWith(enemy.Bounds))
@@ -198,7 +198,7 @@ namespace WarThreadsGUI
 
                 x += direction * speed;
 
-                // Обновляем положение врага
+                // РћР±РЅРѕРІР»СЏРµРј РїРѕР»РѕР¶РµРЅРёРµ РІСЂР°РіР°
                 enemy.Location = new Point(x, enemy.Location.Y);
             }
 
@@ -221,7 +221,7 @@ namespace WarThreadsGUI
         {
             Interlocked.Increment(ref missCount);
 
-            // Удаляем врага с панели
+            // РЈРґР°Р»СЏРµРј РІСЂР°РіР° СЃ РїР°РЅРµР»Рё
             panelGame.Invoke(new Action(() =>
             {
                 panelGame.Controls.Remove(enemy);
@@ -229,7 +229,7 @@ namespace WarThreadsGUI
 
             UpdateScore();
 
-            // Проверка условия завершения игры
+            // РџСЂРѕРІРµСЂРєР° СѓСЃР»РѕРІРёСЏ Р·Р°РІРµСЂС€РµРЅРёСЏ РёРіСЂС‹
             if (missCount >= 30)
             {
                 GameOver();
@@ -238,7 +238,7 @@ namespace WarThreadsGUI
 
         private void UpdateScore()
         {
-            string title = string.Format($"Война потоков - Попаданий: {hitCount}, Промахов: {missCount}");
+            string title = string.Format($"Р’РѕР№РЅР° РїРѕС‚РѕРєРѕРІ - РџРѕРїР°РґР°РЅРёР№: {hitCount}, РџСЂРѕРјР°С…РѕРІ: {missCount}");
 
             if (InvokeRequired)
             {
@@ -255,13 +255,13 @@ namespace WarThreadsGUI
 
         private void FireBullet()
         {
-            // Если семафор равен 0, выстрела не происходит
+            // Р•СЃР»Рё СЃРµРјР°С„РѕСЂ СЂР°РІРµРЅ 0, РІС‹СЃС‚СЂРµР»Р° РЅРµ РїСЂРѕРёСЃС…РѕРґРёС‚
             if (!BulletSemaphore.WaitOne(0))
             {
                 return;
             }
 
-            // Отобразить пулю
+            // РћС‚РѕР±СЂР°Р·РёС‚СЊ РїСѓР»СЋ
             PictureBox bullet = new PictureBox
             {
                 Image = Properties.Resources.bullet,
@@ -271,7 +271,7 @@ namespace WarThreadsGUI
                 Tag = "bullet"
             };
 
-            // Добавляем пулю на панель
+            // Р”РѕР±Р°РІР»СЏРµРј РїСѓР»СЋ РЅР° РїР°РЅРµР»СЊ
             panelGame.Invoke(new Action(() =>
             {
                 panelGame.Controls.Add(bullet);
@@ -298,13 +298,13 @@ namespace WarThreadsGUI
                 return;
             }
 
-            // Удаляем пулю с панели
+            // РЈРґР°Р»СЏРµРј РїСѓР»СЋ СЃ РїР°РЅРµР»Рё
             panelGame.Invoke(new Action(() =>
             {
                 panelGame.Controls.Remove(bullet);
             }));
 
-            // Выстрел сделан - добавить 1 к семафору
+            // Р’С‹СЃС‚СЂРµР» СЃРґРµР»Р°РЅ - РґРѕР±Р°РІРёС‚СЊ 1 Рє СЃРµРјР°С„РѕСЂСѓ
             BulletSemaphore.Release();
 
             bullet.Tag = "deleted";
